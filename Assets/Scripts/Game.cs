@@ -13,10 +13,18 @@ public class Game : MonoBehaviour
     {
 
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
     {
+        if (m_compasses != null)
+        {
+             Debug.Log("There's " + m_compasses.Length + " compasses");
+        }
+        else
+        {
+            Debug.Log("Compasses still null...");
+        }
         if (m_compasses == null || m_compasses.Length <= 0)
             m_compasses = GameObject.FindGameObjectsWithTag("compass");
 
@@ -24,7 +32,7 @@ public class Game : MonoBehaviour
         {
             foreach (GameObject item in m_compasses)
             {
-                item.GetComponent<CompassManager>().setObjectif(m_goals[0].transform);
+                item.GetComponentInParent<CompassManager>().setObjectif(m_goals[0].transform);
             }
         }
 
